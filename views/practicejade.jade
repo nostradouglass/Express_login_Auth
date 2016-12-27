@@ -1,0 +1,48 @@
+doctype 
+
+html
+    include ./head.jade
+
+    body
+
+        div
+            p First Paragraph
+
+            p
+                |  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex suscipit perferendis consequatur! Nobis aut non labore et, magnam cum quibusdam soluta eum. Sint excepturi error praesentium maiores, expedita necessitatibus ad.
+                br
+                |  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste commodi, dolorem! Quaerat dolorem, illum voluptas? Non nemo blanditiis tempore cum est, inventore placeat tempora officiis eligendi, quis saepe eius laudantium!
+
+            p. 
+                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. <a href="stuff">Magnam </a>laudantium nisi blanditiis nostrum totam, quis voluptas facere nihil, officiis enim porro impedit molestias non id! Aut soluta voluptatum unde quasi!
+            
+            p(id="4th",
+            class="Stuff").
+                Hello World 123
+
+            #2nd_div.2ndClass more stuff inside
+
+            ul
+                li#bbp_list_item
+                    a(href="#") Barry Bonds
+                li#bbp_list_item
+                    a(href="#") Hank Aarom
+                li#bbp_list_item
+                    a(href="#") Babe Ruth
+
+            //- Wont see in the html
+            // Will see in the final html
+
+            - myName = "Kelly"
+
+            p Hello #{myName}
+
+            p 1234 * 5678 = #{1234 * 5678}
+
+            - website = "http://google.com"
+
+            a(href="#{website}")
+            
+            - batmanData = "abc 123 stuff jdajadkladl"
+
+            p= batmanData

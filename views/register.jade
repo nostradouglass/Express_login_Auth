@@ -1,0 +1,33 @@
+extends base
+
+
+block body
+  h1 Create an Account
+
+    form(method="post")
+        input(type="hidden" name="_csrf" value=csrfToken)
+        
+        span
+            label(for="firstName") First Name:
+            input(type="text", name="firstName", id="firstName", required=true)
+            br
+
+        span 
+            label(for="lastName") Last Name:
+            input(type="text", name="lastName", id="lastName", required=true)
+            br
+
+        span Username:
+        input(type="text", name="userName", required=true)
+        br
+
+        span Email:
+        input(type="text", name="email", required=true)
+        br
+
+        span Password:
+        input(type="text", name="password", required=true)
+        br
+
+        input(type="submit")
+        
