@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var Users = require('./models/users');
 var bcrypt = require('bcryptjs');
 var helmet = require('helmet');
@@ -19,7 +20,7 @@ var login = require('./routes/login');
 var register = require('./routes/register');
 var dashboard = require('./routes/dashboard');
 
-mongoose.connect('mongodb://localhost/authPractice');
+mongoose.connect('mongodb://admin:doritos5!@ds135876.mlab.com:35876/auth_practice', { useMongoClient: true});
 mongoose.connection.on('connect', function () {
   console.log('connected to database');
 })
@@ -64,7 +65,7 @@ app.use(function (req, res, next) {
 
 function requireLogin(req, res, next) {
   if (!req.user) {
-    res.redirect('/login');
+    res.redirect('/');
   } else {
     next();
   }
@@ -80,11 +81,14 @@ app.use(require('node-sass-middleware')({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// If user is logged in then allow static path to be shown.
+app.use('/static', requireLogin, express.static(path.join(__dirname, 'test')));
+
 app.use('/', index);
 app.use('/users', users);
 app.use('/login', login);
 app.use('/register', register);
-app.use('/dashboard', dashboard);
+app.use('/dashboard', requireLogin, dashboard);
 
 
 // catch 404 and forward to error handler

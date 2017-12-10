@@ -26,9 +26,9 @@ router.post('/', function (req, res, next) {
             if (err.code == 1000) {
                 error = "That email address is already taken, try another."
             }
-            res.render('register', { error: error });
+            res.render('register', { error: err });
         } else {
-            res.redirect('/dashboard')
+            res.redirect('/login')
         }
     })
 
